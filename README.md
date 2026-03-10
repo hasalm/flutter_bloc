@@ -22,3 +22,9 @@ Discovering The fundamentals of Flutter Bloc State Management with Simple Applic
 4- Add the assets file and configure it inside of your pubspec.yaml file (already configured and included)
 
 5- Enjoy Exploring(Bloc state management with Bloc/Cubit Interfaces and Bloc Architecture).
+
+#FunnyFacts
+
+- The Weather Was Cloudy in 'New Delhi' when I made this repository.
+
+
