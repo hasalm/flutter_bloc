@@ -1,0 +1,90 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:state_app/bloc/auth_bloc.dart';
+import 'package:state_app/home_screen.dart';
+import 'package:state_app/widgets/gradient_button.dart';
+import 'package:state_app/widgets/login_field.dart';
+import 'package:state_app/widgets/social_button.dart';
+
+class LogInScreen extends StatefulWidget {
+  const LogInScreen({Key? key}) : super(key: key);
+
+  @override
+  State<LogInScreen> createState() => _LogInScreenState();
+}
+
+class _LogInScreenState extends State<LogInScreen> {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: BlocConsumer<AuthBloc, AuthState>(
+        listener: (context, state) {
+          if (state is AuthFailure) {
+            ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(SnackBar(content: Text(state.error)));
+          }
+          if (state is AuthSuccess) {
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => const HomeScreen()),
+              (route) => false,
+            );
+          }
+        },
+        builder: (context, state) {
+          if (state is AuthLoading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          return SingleChildScrollView(
+            child: Center(
+              child: Column(
+                children: [
+                  Image.asset('assets/images/signin_balls.png'),
+                  const Text(
+                    'SignIn',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 50),
+                  ),
+                  const SizedBox(height: 50),
+                  const SocialButton(
+                    iconPath: 'assets/svgs/g_logo.svg',
+                    label: 'Continue With Google',
+                  ),
+                  const SizedBox(height: 20),
+                  const SocialButton(
+                    iconPath: 'assets/svgs/f_logo.svg',
+                    label: 'Continue With Facebook',
+                    horizontalPadding: 90,
+                  ),
+                  const SizedBox(height: 15),
+                  const Text('or', style: TextStyle(fontSize: 17)),
+                  const SizedBox(height: 15),
+                  LogInField(hintText: 'Email', controller: emailController),
+                  const SizedBox(height: 15),
+                  LogInField(
+                    hintText: 'Password',
+                    controller: passwordController,
+                  ),
+                  const SizedBox(height: 20),
+                  GradientButton(
+                    onPressed: () {
+                      context.read<AuthBloc>().add(
+                        AuthLoginRequest(
+                          email: emailController.text.trim(),
+                          password: passwordController.text.trim(),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
