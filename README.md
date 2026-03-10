@@ -23,8 +23,7 @@ Discovering The fundamentals of Flutter Bloc State Management with Simple Applic
 
 5- Enjoy Exploring(Bloc state management with Bloc/Cubit Interfaces and Bloc Architecture).
 
-#FunnyFacts
-
+# FunnyFacts
 - The Weather Was Cloudy in 'New Delhi' when I made this repository.
 
 
