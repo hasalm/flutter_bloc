@@ -14,7 +14,11 @@ Discovering The fundamentals of Flutter Bloc State Management with Simple Applic
 # Usage
 
 1- Download the Repository.
+
 2- Replace the lib folder with your lib folder in your flutter project.
+
 3- Replace the pubspec.yaml file also or just download the dependencies.
+
 4- Add the assets file and configure it inside of your pubspec.yaml file (already configured and included)
+
 5- Enjoy Exploring(Bloc state management with Bloc/Cubit Interfaces and Bloc Architecture).
